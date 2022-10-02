@@ -1,0 +1,25 @@
+{
+  "name": "itis6177-assignment-swagger",
+  "version": "1.0.0",
+  "description": "Assignment Swagger",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atuljha/ITIS6177-Assignment-Swagger.git"
+  },
+  "author": "Atul Jha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atuljha/ITIS6177-Assignment-Swagger/issues"
+  },
+  "homepage": "https://github.com/atuljha/ITIS6177-Assignment-Swagger#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0"
+  }
+}

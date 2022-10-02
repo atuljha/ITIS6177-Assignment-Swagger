@@ -1,0 +1,222 @@
+
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "ITIS 6177 Swagger API Documentation",
+      "description": "ITIS 6177 Swagger API Documentation for Assigment 08",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "174.138.32.50:3009",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Agents",
+        "description": "API for agents in the system"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    
+      "paths": {
+        "/agents": {
+          "get": {
+            "tags": ["Agents"],
+            "summary": "Get all agents in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Agents"
+                }
+              }
+            }
+          },
+          "post": {
+            "tags": ["Agents"],
+            "summary": "Create new agent in system",
+            "parameters": [
+              {
+                "name": "agent",
+                "in": "body",
+                "description": "Agent that we want to create",
+                "schema": {
+                  "$ref": "#/definitions/Agent"
+                }
+              }
+            ],
+            "produces": ["application/json"],
+            "responses": {
+              "200": {
+                "description": "New agent is created",
+                "schema": {
+                  "$ref": "#/definitions/Agent"
+                }
+              }
+            }
+          },
+          "put": {
+            "summary": "Update Contact Info of the agent",
+            "tags": ["Agents"],
+            "parameters": [
+              {
+                "name": "agent",
+                "in": "body",
+                "description": "Agent van update their info",
+                "schema": {
+                  "$ref": "#/definitions/UpdateAgent"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Agent Info  is updated",
+                "parameters": [
+                  {
+                    "name": "agent",
+                    "in": "body",
+                    "description": "Delete agent with contact number",
+                    "schema": {
+                      "$ref": "#/definitions/DeleteAgent"
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/definitions/Agent"
+                }
+              }
+            }
+          },
+          "patch": {
+            "summary": "Update agent with Working area",
+            "tags": ["Agents"],
+            "parameters": [
+              {
+                "name": "agent",
+                "in": "body",
+                "description": "Agent with few update values of properties",
+                "schema": {
+                  "$ref": "#/definitions/PatchAgent"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Agent is updated",
+                "parameters": [
+                  {
+                    "name": "agent",
+                    "in": "body",
+                    "description": "Agent value with Phone number",
+                    "schema": {
+                      "$ref": "#/definitions/PatchAgent"
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/definitions/Agent"
+                }
+              }
+            }
+          },
+          "delete": {
+            "tags": ["Agents"],
+            "summary": "Delete agent with given agent name and  agent contact number",
+            "parameters": [
+              {
+                "name": "agent",
+                "in": "body",
+                "description": "Agent is successfully deleted",
+                "schema": {
+                  "$ref": "#/definitions/DeleteAgent"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Agent is successfully deleted"
+              }
+            }
+          }
+        }
+      },
+      "definitions": {
+        "Agent": {
+          "required": ["AGENT_NAME", "PHONE_NO"],
+          "properties": {
+            "PHONE_NO": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "AGENT_NAME": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "WORKING_AREA": {
+              "type": "string",
+              "uniqueItems": false
+            }
+          }
+        },
+        "UpdateAgent": {
+          "required": ["AGENT_NAME", "PHONE_NO","NEW_PHONE_NO"],
+          "properties": {
+            "PHONE_NO": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "NEW_PHONE_NO": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "AGENT_NAME": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "WORKING_AREA": {
+              "type": "string",
+              "uniqueItems": false
+            }
+          }
+        },
+        "PatchAgent": {
+          "required": ["AGENT_NAME", "WORKING_AREA","PHONE_NO"],
+          "properties": {
+            "PHONE_NO": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "AGENT_NAME": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "WORKING_AREA": {
+              "type": "string",
+              "uniqueItems": true
+            }
+          }
+        },
+        "DeleteAgent": {
+          "required": ["PHONE_NO","AGENT_CODE"],
+          "properties": {
+            "AGENT_NAME": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "AGENT_CODE": {
+              "type": "string",
+              "uniqueItems": true
+            }
+          }
+        },
+        "Agents": {
+          "type": "array",
+          "$ref": "#/definitions/Agent"
+        }
+      }  
+  }
+  
