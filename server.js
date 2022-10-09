@@ -198,5 +198,24 @@ function generateUID() {
     firstPart = ("000" + firstPart.toString(36)).slice(-3);
     secondPart = ("000" + secondPart.toString(36)).slice(-3);
     return firstPart + secondPart;
+
 }
+
+
+/* Aws Lambda api gateway and lambda call */
+const axios = require('axios')
+   app.get('/say', function (req, res) {
+        try {
+            axios.get('https://j65i579qbk.execute-api.us-east-1.amazonaws.com/stage/',{ params: { keyword: req.query.keyword } } ).then(function (response) {
+                // handle success
+                res.status(200).send(response.data);
+            })
+            .catch(function (error) {
+                res.status(501).send(error.message)
+            })
+
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+    });
 
